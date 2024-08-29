@@ -9,9 +9,17 @@ public class ReqSpec {
 
     public static final String BASE_URI = "https://stellarburgers.nomoreparties.site";
 
-    public static RequestSpecification getReqSpec() {
+    public static RequestSpecification getNotAuthReqSpec() {
         return new RequestSpecBuilder()
                 .setContentType(JSON)
+                .setBaseUri(BASE_URI)
+                .build();
+    }
+
+    public static RequestSpecification getAuthReqSpec(String accessToken) {
+        return new RequestSpecBuilder()
+                .setContentType(JSON)
+                .addHeader("Authorization", accessToken)
                 .setBaseUri(BASE_URI)
                 .build();
     }

@@ -12,7 +12,7 @@ public class UserClient extends BaseClass {
     @Step("Регистрация пользователя")
     public Response register(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getReqSpec())
+                .spec(ReqSpec.getNotAuthReqSpec())
                 .body(user)
                 .post(PathAPI.REGISTER_USER)
                 .then()
@@ -25,8 +25,7 @@ public class UserClient extends BaseClass {
     @Step("Удаление пользователя")
     public void delete(String accessToken, int expectedStatusCode) {
         given()
-                .spec(ReqSpec.getReqSpec())
-                .headers("Authorization", accessToken)
+                .spec(ReqSpec.getAuthReqSpec(accessToken))
                 .delete(PathAPI.USER)
                 .then()
                 .statusCode(expectedStatusCode);
@@ -35,7 +34,7 @@ public class UserClient extends BaseClass {
     @Step("Логин пользователя")
     public Response login(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getReqSpec())
+                .spec(ReqSpec.getNotAuthReqSpec())
                 .body(user)
                 .post(PathAPI.LOGIN_USER)
                 .then()
@@ -48,8 +47,7 @@ public class UserClient extends BaseClass {
     @Step("Изменение данных авторизованного пользователя")
     public Response update(String accessToken, User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getReqSpec())
-                .headers("Authorization", accessToken)
+                .spec(ReqSpec.getAuthReqSpec(accessToken))
                 .body(user)
                 .patch(PathAPI.USER)
                 .then()
@@ -62,7 +60,7 @@ public class UserClient extends BaseClass {
     @Step("Изменение данных неавторизованного пользователя")
     public Response update(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getReqSpec())
+                .spec(ReqSpec.getNotAuthReqSpec())
                 .body(user)
                 .patch(PathAPI.USER)
                 .then()
