@@ -8,6 +8,7 @@ public class ReqSpec {
 
     public static final String BASE_URI = "https://stellarburgers.nomoreparties.site";
 
+    // TODO: проверить к концу разработки, нужна ли эта спецификация в итоге
     public static RequestSpecification getReqSpec() {
         return new RequestSpecBuilder()
                 .setBaseUri(BASE_URI)
