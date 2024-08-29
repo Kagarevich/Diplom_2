@@ -21,4 +21,9 @@ public class User {
         this.name = name;
     }
     public User() {}
+
+    @Override
+    public String toString() {
+        return String.join(" | ", email, password, name);
+    }
 }

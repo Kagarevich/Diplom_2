@@ -10,8 +10,8 @@ public class UserGenerator {
      * @return random user
      */
     public static User create() {
-        String shortString = RandomStringUtils.random(3, true, false);
-        String longString = RandomStringUtils.random(10, true, false);
+        String shortString = RandomStringUtils.random(3, true, false).toLowerCase();
+        String longString = RandomStringUtils.random(10, true, false).toLowerCase();
         return new User(
                 String.format(
                         "%s@%s.%s",

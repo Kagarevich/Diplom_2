@@ -25,4 +25,9 @@ public class AuthUser {
     }
 
     public AuthUser() {}
+
+    @Override
+    public String toString() {
+        return String.join(" | ", String.valueOf(success), user.toString(), accessToken, refreshToken);
+    }
 }

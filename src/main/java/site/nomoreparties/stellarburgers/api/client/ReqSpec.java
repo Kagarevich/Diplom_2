@@ -7,12 +7,12 @@ import static io.restassured.http.ContentType.JSON;
 
 public class ReqSpec {
 
-    public static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
+    public static final String BASE_URI = "https://stellarburgers.nomoreparties.site";
 
     public static RequestSpecification getReqSpec() {
         return new RequestSpecBuilder()
                 .setContentType(JSON)
-                .setBaseUri(BASE_URL)
+                .setBaseUri(BASE_URI)
                 .build();
     }
 }
