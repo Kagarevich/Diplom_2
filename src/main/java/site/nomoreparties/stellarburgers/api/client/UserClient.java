@@ -6,13 +6,14 @@ import site.nomoreparties.stellarburgers.constant.PathAPI;
 import site.nomoreparties.stellarburgers.model.User;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 
 public class UserClient extends BaseClass {
 
     @Step("Регистрация пользователя")
     public Response register(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getNotAuthReqSpec())
+                .spec(ReqSpec.getReqSpec(JSON))
                 .body(user)
                 .post(PathAPI.REGISTER_USER)
                 .then()
@@ -25,7 +26,7 @@ public class UserClient extends BaseClass {
     @Step("Удаление пользователя")
     public void delete(String accessToken, int expectedStatusCode) {
         given()
-                .spec(ReqSpec.getAuthReqSpec(accessToken))
+                .spec(ReqSpec.getReqSpec(accessToken))
                 .delete(PathAPI.USER)
                 .then()
                 .statusCode(expectedStatusCode);
@@ -34,7 +35,7 @@ public class UserClient extends BaseClass {
     @Step("Логин пользователя")
     public Response login(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getNotAuthReqSpec())
+                .spec(ReqSpec.getReqSpec(JSON))
                 .body(user)
                 .post(PathAPI.LOGIN_USER)
                 .then()
@@ -47,7 +48,7 @@ public class UserClient extends BaseClass {
     @Step("Изменение данных авторизованного пользователя")
     public Response update(String accessToken, User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getAuthReqSpec(accessToken))
+                .spec(ReqSpec.getReqSpec(accessToken, JSON))
                 .body(user)
                 .patch(PathAPI.USER)
                 .then()
@@ -60,7 +61,7 @@ public class UserClient extends BaseClass {
     @Step("Изменение данных неавторизованного пользователя")
     public Response update(User user, int expectedStatusCode) {
         return given()
-                .spec(ReqSpec.getNotAuthReqSpec())
+                .spec(ReqSpec.getReqSpec(JSON))
                 .body(user)
                 .patch(PathAPI.USER)
                 .then()
