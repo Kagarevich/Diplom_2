@@ -42,6 +42,7 @@ public class LoginRequiredFieldErrorTest {
         };
     }
 
+    //Вынес большой кусок кода в отдельный метод
     private User createLoginWrongUser() {
         if (isNull) {
             return new User(email, password, null);
