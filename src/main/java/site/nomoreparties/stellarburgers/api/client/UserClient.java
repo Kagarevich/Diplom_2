@@ -9,6 +9,7 @@ import site.nomoreparties.stellarburgers.model.User;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
+import static site.nomoreparties.stellarburgers.model.generator.UserGenerator.*;
 
 public class UserClient extends BaseClass {
 
@@ -48,7 +49,16 @@ public class UserClient extends BaseClass {
     }
 
     @Step("Изменение данных авторизованного пользователя")
-    public Response update(String accessToken, User user, int expectedStatusCode) {
+    public Response update(
+            String accessToken,
+            User user,
+            int expectedStatusCode,
+            Boolean isEmail,
+            Boolean isPassword,
+            Boolean isName) {
+        if (isEmail) user.setEmail(createEmail());
+        if (isPassword) user.setPassword(createPassword());
+        if (isName) user.setName(createName());
         return given()
                 .spec(ReqSpec.getReqSpec(accessToken, JSON))
                 .body(user)
@@ -61,7 +71,15 @@ public class UserClient extends BaseClass {
     }
 
     @Step("Изменение данных неавторизованного пользователя")
-    public Response update(User user, int expectedStatusCode) {
+    public Response update(
+            User user,
+            int expectedStatusCode,
+            Boolean isEmail,
+            Boolean isPassword,
+            Boolean isName) {
+        if (isEmail) user.setEmail(createEmail());
+        if (isPassword) user.setPassword(createPassword());
+        if (isName) user.setName(createName());
         return given()
                 .spec(ReqSpec.getReqSpec(JSON))
                 .body(user)
@@ -74,7 +92,7 @@ public class UserClient extends BaseClass {
     }
 
     @Step("Сравнение тела ответа успешной регистрации")
-    public void compareRegisterResponseBody(Response resp, User expectedUser) {
+    public void compareAuthUserResponseBody(Response resp, User expectedUser) {
         matchResponseBody(resp, AuthUser.class);
         Assert.assertTrue("success != true", resp.as(AuthUser.class).getSuccess());
         Assert.assertEquals(

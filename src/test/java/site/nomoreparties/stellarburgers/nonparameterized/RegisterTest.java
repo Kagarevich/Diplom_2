@@ -30,7 +30,7 @@ public class RegisterTest {
     }
 
     @After
-    @Description("Очищение списка пользователей, в том числе и ошибочно созданных")
+    @Description("Удаление списка пользователей, в том числе и ошибочно созданных")
     public void deleteUser() {
         if (responses.size() != 0) {
             for (Response response : responses) {
@@ -51,7 +51,7 @@ public class RegisterTest {
             "сравнение части тела ответа с ожидаемым")
     public void registerSuccessTest() {
         responses.add(userClient.register(user, 200));
-        userClient.compareRegisterResponseBody(
+        userClient.compareAuthUserResponseBody(
                 responses.get(0),
                 new User(
                         user.getEmail(),

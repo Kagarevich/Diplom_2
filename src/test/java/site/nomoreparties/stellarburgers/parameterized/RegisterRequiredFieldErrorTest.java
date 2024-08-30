@@ -25,7 +25,6 @@ public class RegisterRequiredFieldErrorTest {
     private Response response;
 
     private final User user;
-    private final int expectedStatusCode;
 
     @Parameterized.Parameters
     public static Object[][] data() {
@@ -34,59 +33,44 @@ public class RegisterRequiredFieldErrorTest {
                         null,
                         UserGenerator.createPassword(),
                         UserGenerator.createName()
-                ), 403},
+                )},
                 {new User(
                         UserGenerator.createEmail(),
                         null,
                         UserGenerator.createName()
-                ), 403},
+                )},
                 {new User(
                         UserGenerator.createEmail(),
                         UserGenerator.createPassword(),
                         null
-                ), 403},
+                )},
                 {new User(
                         UserGenerator.createEmail(),
                         null,
                         null
-                ), 403},
+                )},
                 {new User(
                         null,
                         null,
                         UserGenerator.createName()
-                ), 403},
+                )},
                 {new User(
                         null,
                         UserGenerator.createPassword(),
                         null
-                ), 403},
+                )},
                 {new User(
                         null,
                         null,
                         null
-                ), 403},
+                )},
         };
     }
 
     @Before
-    public void initUserAndUserClient() {
+    public void init() {
         userClient = new UserClient();
-    }
-
-    @Test
-    @DisplayName("Тестирование 403 ошибки при недостатке данных при регистрации")
-    @Description("Тестирование 403 ошибки регистрации: " +
-            "сравнение статус кодов при вызове запроса -> " +
-            "сравнение тела ответа с ожидаемым")
-    public void registerTest() {
-        response = userClient.register(user, expectedStatusCode);
-        userClient.compareResponseBody(
-                new InfoResponse(
-                        false,
-                        Message.USER_REQUIRED_FIELDS_ERROR),
-                response,
-                InfoResponse.class
-        );
+        response = null;
     }
 
     @After
@@ -97,5 +81,21 @@ public class RegisterRequiredFieldErrorTest {
                     response.as(AuthUser.class).getAccessToken(),
                     202);
         }
+    }
+
+    @Test
+    @DisplayName("Тестирование 403 ошибки при недостатке данных при регистрации")
+    @Description("Тестирование 403 ошибки регистрации: " +
+            "сравнение статус кодов при вызове запроса -> " +
+            "сравнение тела ответа с ожидаемым")
+    public void registerTest() {
+        response = userClient.register(user, 403);
+        userClient.compareResponseBody(
+                new InfoResponse(
+                        false,
+                        Message.USER_REQUIRED_FIELDS_ERROR),
+                response,
+                InfoResponse.class
+        );
     }
 }
