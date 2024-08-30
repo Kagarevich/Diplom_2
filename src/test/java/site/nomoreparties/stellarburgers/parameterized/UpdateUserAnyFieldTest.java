@@ -10,9 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import site.nomoreparties.stellarburgers.api.client.UserClient;
-import site.nomoreparties.stellarburgers.constant.Message;
 import site.nomoreparties.stellarburgers.model.AuthUser;
-import site.nomoreparties.stellarburgers.model.InfoResponse;
 import site.nomoreparties.stellarburgers.model.User;
 import site.nomoreparties.stellarburgers.model.generator.UserGenerator;
 
