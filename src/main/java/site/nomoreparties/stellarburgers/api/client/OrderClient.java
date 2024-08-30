@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import site.nomoreparties.stellarburgers.constant.PathAPI;
-import site.nomoreparties.stellarburgers.model.AuthUser;
 import site.nomoreparties.stellarburgers.model.IngredientHashes;
 import site.nomoreparties.stellarburgers.model.OrderCreateResponse;
 import site.nomoreparties.stellarburgers.model.UserOrdersList;
