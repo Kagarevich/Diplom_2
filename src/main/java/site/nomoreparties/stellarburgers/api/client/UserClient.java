@@ -2,7 +2,9 @@ package site.nomoreparties.stellarburgers.api.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import site.nomoreparties.stellarburgers.constant.PathAPI;
+import site.nomoreparties.stellarburgers.model.AuthUser;
 import site.nomoreparties.stellarburgers.model.User;
 
 import static io.restassured.RestAssured.given;
@@ -69,5 +71,15 @@ public class UserClient extends BaseClass {
                 .statusCode(expectedStatusCode)
                 .extract()
                 .response();
+    }
+
+    @Step("Сравнение тела ответа успешной регистрации")
+    public void compareRegisterResponseBody(Response resp, User expectedUser) {
+        matchResponseBody(resp, AuthUser.class);
+        Assert.assertTrue("success != true", resp.as(AuthUser.class).getSuccess());
+        Assert.assertEquals(
+                "email/name не совпадают с ожидаемыми",
+                expectedUser.toString(),
+                resp.as(AuthUser.class).getUser().toString());
     }
 }

@@ -1,8 +1,12 @@
 package site.nomoreparties.stellarburgers.model;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     private Ingredient[] ingredients;
@@ -12,24 +16,7 @@ public class Order {
     private String createdAt;
     private String updatedAt;
 
-    public Order(Ingredient[] ingredients,
-                 String _id,
-                 String status,
-                 String number,
-                 String createdAt,
-                 String updatedAt) {
-        this.ingredients = ingredients;
-        this._id = _id;
-        this.status = status;
-        this.number = number;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
     public Order(String number) {
         this.number = number;
-    }
-
-    public Order() {
     }
 }

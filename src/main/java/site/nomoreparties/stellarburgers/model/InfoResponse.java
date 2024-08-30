@@ -1,17 +1,14 @@
 package site.nomoreparties.stellarburgers.model;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class InfoResponse {
-    private boolean success;
+
+    private Boolean success;
     private String message;
-
-    public InfoResponse(boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
-
-    public InfoResponse() {
-    }
 }

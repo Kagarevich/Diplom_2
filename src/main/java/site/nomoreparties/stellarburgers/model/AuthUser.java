@@ -1,33 +1,21 @@
 package site.nomoreparties.stellarburgers.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthUser {
 
-    private boolean success;
+    private Boolean success;
     private User user;
     private String accessToken;
     private String refreshToken;
 
-    public AuthUser(boolean success, User user, String accessToken, String refreshToken) {
-        this.success = success;
-        this.user = user;
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-    }
-
     public AuthUser(boolean success, User user) {
         this.success = success;
         this.user = user;
-    }
-
-    public AuthUser() {}
-
-    @Override
-    public String toString() {
-        return String.join(" | ", String.valueOf(success), user.toString(), accessToken, refreshToken);
     }
 }

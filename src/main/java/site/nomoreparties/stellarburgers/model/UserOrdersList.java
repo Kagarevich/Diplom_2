@@ -1,25 +1,16 @@
 package site.nomoreparties.stellarburgers.model;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserOrdersList {
 
     private boolean success;
     private Order[] orders;
     private int total;
     private int totalToday;
-
-    public UserOrdersList(boolean success,
-                          Order[] orders,
-                          int total,
-                          int totalToday) {
-        this.success = success;
-        this.orders = orders;
-        this.total = total;
-        this.totalToday = totalToday;
-    }
-
-    public UserOrdersList() {
-    }
 }
