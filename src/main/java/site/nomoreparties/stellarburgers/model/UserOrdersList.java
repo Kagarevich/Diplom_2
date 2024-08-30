@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserOrdersList {
 
-    private boolean success;
-    private Order[] orders;
-    private int total;
-    private int totalToday;
+    private Boolean success;
+    private OrderForUserOrderList[] orders;
+    private Integer total;
+    private Integer totalToday;
 }

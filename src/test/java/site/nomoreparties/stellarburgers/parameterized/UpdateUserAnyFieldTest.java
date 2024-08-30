@@ -14,7 +14,7 @@ import site.nomoreparties.stellarburgers.model.AuthUser;
 import site.nomoreparties.stellarburgers.model.User;
 import site.nomoreparties.stellarburgers.model.generator.UserGenerator;
 
-@DisplayName("Тест \"Изменение данных пользователя с авторизации\"")
+@DisplayName("Тест \"Изменение данных пользователя с авторизацией\"")
 @RunWith(Parameterized.class)
 @RequiredArgsConstructor
 public class UpdateUserAnyFieldTest {

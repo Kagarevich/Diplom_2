@@ -16,6 +16,7 @@ import site.nomoreparties.stellarburgers.model.generator.UserGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+@DisplayName("Тестирование успешной регистрации и ошибки регистрации")
 public class RegisterTest {
 
     private UserClient userClient;

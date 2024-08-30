@@ -11,6 +11,7 @@ import site.nomoreparties.stellarburgers.model.AuthUser;
 import site.nomoreparties.stellarburgers.model.User;
 import site.nomoreparties.stellarburgers.model.generator.UserGenerator;
 
+@DisplayName("Тест \"логин\"")
 public class LoginTest {
 
     private UserClient userClient;
@@ -18,7 +19,7 @@ public class LoginTest {
     private String accessToken;
 
     @Before
-    public void init() {
+    public void initClientAndToken() {
         userClient = new UserClient();
         user = UserGenerator.create();
         accessToken = userClient.register(user, 200).as(AuthUser.class).getAccessToken();

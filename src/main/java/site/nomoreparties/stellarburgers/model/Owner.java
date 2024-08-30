@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderCreateResponse {
+public class Owner {
 
     private String name;
-    private Order order;
-    private Boolean success;
+    private String email;
+    private String createdAt;
+    private String updatedAt;
 }

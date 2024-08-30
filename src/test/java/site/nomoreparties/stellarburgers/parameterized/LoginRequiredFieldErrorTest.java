@@ -55,25 +55,6 @@ public class LoginRequiredFieldErrorTest {
         }
     }
 
-    @After
-    public void deleteUser() {
-        userClient.delete(accessToken, 202);
-    }
-
-    @Test
-    @DisplayName("Тест \"логин под существующим пользователем\"")
-    @Description("Авторизуемся -> сравниваем тело ответа с ожидаемым")
-    public void loginSuccessTest() {
-        Response response = userClient.login(userLogin, 401);
-        userClient.compareResponseBody(
-                new InfoResponse(
-                        false,
-                        Message.LOGIN_INCORRECT_FIELDS_ERROR),
-                response,
-                InfoResponse.class
-        );
-    }
-
     @Before
     public void initClientAndUsers() {
         userClient = new UserClient();
@@ -84,5 +65,24 @@ public class LoginRequiredFieldErrorTest {
         );
         accessToken = userClient.register(userRegister, 200).as(AuthUser.class).getAccessToken();
         userLogin = createLoginWrongUser();
+    }
+
+    @After
+    public void deleteUser() {
+        userClient.delete(accessToken, 202);
+    }
+
+    @Test
+    @DisplayName("Тест \"логин под существующим пользователем\"")
+    @Description("Авторизуемся -> сравниваем тело ответа с ожидаемым")
+    public void loginRequiredFieldErrorTest() {
+        Response response = userClient.login(userLogin, 401);
+        userClient.compareResponseBody(
+                new InfoResponse(
+                        false,
+                        Message.LOGIN_INCORRECT_FIELDS_ERROR),
+                response,
+                InfoResponse.class
+        );
     }
 }
