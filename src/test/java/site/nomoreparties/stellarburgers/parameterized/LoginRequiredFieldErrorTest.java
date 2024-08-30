@@ -55,18 +55,6 @@ public class LoginRequiredFieldErrorTest {
         }
     }
 
-    @Before
-    public void initClientAndUsers() {
-        userClient = new UserClient();
-        User userRegister = new User(
-                email != null ? email : createEmail(),
-                password != null ? password : createPassword(),
-                createName()
-        );
-        accessToken = userClient.register(userRegister, 200).as(AuthUser.class).getAccessToken();
-        userLogin = createLoginWrongUser();
-    }
-
     @After
     public void deleteUser() {
         userClient.delete(accessToken, 202);
@@ -84,5 +72,17 @@ public class LoginRequiredFieldErrorTest {
                 response,
                 InfoResponse.class
         );
+    }
+
+    @Before
+    public void initClientAndUsers() {
+        userClient = new UserClient();
+        User userRegister = new User(
+                email != null ? email : createEmail(),
+                password != null ? password : createPassword(),
+                createName()
+        );
+        accessToken = userClient.register(userRegister, 200).as(AuthUser.class).getAccessToken();
+        userLogin = createLoginWrongUser();
     }
 }

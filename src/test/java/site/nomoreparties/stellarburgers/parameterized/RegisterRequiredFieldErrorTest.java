@@ -88,7 +88,7 @@ public class RegisterRequiredFieldErrorTest {
     @Description("Тестирование 403 ошибки регистрации: " +
             "сравнение статус кодов при вызове запроса -> " +
             "сравнение тела ответа с ожидаемым")
-    public void registerTest() {
+    public void registerRequiredFieldErrorTest() {
         response = userClient.register(user, 403);
         userClient.compareResponseBody(
                 new InfoResponse(
