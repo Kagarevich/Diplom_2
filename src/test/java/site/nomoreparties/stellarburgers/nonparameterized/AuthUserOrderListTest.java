@@ -43,7 +43,9 @@ public class AuthUserOrderListTest {
 
     @Test
     @DisplayName("Получение не пустого списка заказов конкретного пользователя с авторизацией")
-    @Description("Получаем список -> проверяем тело")
+    @Description("Получаем список -> проверяем тело. Не стал проверять значения полей total и totalToday," +
+            "так как не понятно всего чьи заказы - возвращаемого пользователя или вообще все заказы всех пользователей." +
+            "В документации это явно не описано, а в примере значение два может быть просто совпадение")
     public void authUserNotNullOrderListTest() {
         IngredientHashes ingredientHashes = orderClient.getTwoIngredientsHash(200);
         orderClient.create(
